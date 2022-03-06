@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partials/head') %>
+<body>
+<%- include('./partials/nav') %>
+<div class="jumbotron">
+    <div class="container">
+        <h1>Create Customer Form</h1>
+    </div>
+</div>
+<div class="container">
+    <a class="btn btn-primary" href="/" style="float: right;">Go to Home</a>
+    <form method="post" action="/create_customer">
+        <div class="row">
+            <div class="col-md-12">
+                Title <input class="col-md-12" name="title" type="text" />
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-12">
+                GivenName <input class="col-md-12" name="given_name" type="text" />
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-12">
+                MiddleName <input class="col-md-12" name="middle_name" type="text" />
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-12">
+                FamilyName <input class="col-md-12" name="family_name" type="text" />
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-12">
+                Suffix <input class="col-md-12" name="suffix" type="text" />
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-12">
+                DisplayName <input class="col-md-12" name="display_name" type="text" />
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-12">
+                Billing Address  <input class="col-md-12" name="line1" type="text" />
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-12">
+                City  <input class="col-md-12" name="city" type="text" />
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-12">
+                Country  <input class="col-md-12" name="country" type="text" />
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-12">
+                State or Province  <input class="col-md-12" name="province" type="text" />
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-12">
+                Postal Code  <input class="col-md-12" name="post_code" type="text" />
+            </div>
+        </div>
+        <br>
+
+        <div class="row">
+            <div class="col-md-12">
+                <button class="btn btn-lg btn-primary pull-right" type="submit" value="Make a Customer">Create a Customer</button>
+            </div>
+        </div>
+
+    </form>
+    <br>
+</div>
+</body>
+</html>

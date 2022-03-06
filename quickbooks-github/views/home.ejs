@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partials/head') %>
+
+<body>
+<%- include('./partials/nav') %>
+<div class="jumbotron">
+    <div class="container">
+        <h1>QuickBooks Demo APP</h1>
+    </div>
+</div>
+<div class="container">
+    <table class="table table-striped">
+        <tr>
+            <td>
+                Get Invoices
+            </td>
+            <td>
+                <a class="btn btn-md btn-link pull-right" href="/invoices">Get Invoices</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Get Customers
+            </td>
+            <td>
+                <a class="btn btn-md btn-link pull-right" href="/customers">Get Customers</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Create Customer
+            </td>
+            <td>
+                <a class="btn btn-md btn-link pull-right" href="/create_customer">Create Customer</a>
+            </td>
+        </tr>
+    </table>
+</div>

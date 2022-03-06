@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partials/head') %>
+<body>
+<%- include('./partials/nav') %>
+<div class="jumbotron">
+    <div class="container">
+        <h1>Choose an item to create an invoice</h1>
+    </div>
+</div>
+<div class="container">
+    <%if (items) { %>
+        <form method="POST" action="/create_invoice">
+            <h2>Item List</h2>
+            <table class="table">
+                <thead>
+                <tr>
+                    <td>
+                        Select
+                    </td>
+                    <td>
+                        Item Id
+                    </td>
+                    <td>
+                        Item Name
+                    </td>
+                    <td>
+                        Item Quantity on Hand
+                    </td>
+                    <td>
+                        Purchase Cost
+                    </td>
+                    <td>
+                        Unit Price
+                    </td>
+                </tr>
+                </thead>
+
+                <% items.forEach((item) => { %>
+                    <tr>
+                        <td>
+                            <input type="radio" name="item_select" value="<%= item.Name %>; <%= item.Id %>">
+                        </td>
+                        <td>
+                            <%= item.Id %>
+                        </td>
+                        <td>
+                            <%= item.Name %>
+                        </td>
+                        <td> <%= item.QtyOnHand %> </td>
+                        <td> $ <%= item.PurchaseCost %> </td>
+                        <td> $ <%= item.UnitPrice %> </td>
+                    </tr>
+                <% }) %>
+            </table>
+            <div class="submit-name row">
+                <div class="col-md-4">
+                    Quantity <input type="text" name="invoice_qty" />
+                </div>
+                <div class="col-md-8">
+                    Amount <input type="text" name="invoice_amt" />
+                </div>
+                <input type="hidden" name="customer_id" value="<%= customer_id %>" />
+            </div>
+            <div class="row">
+                <button class="btn btn-lg btn-primary pull-right" type="submit" value="Make an invoice">Create an Invoice</button>
+            </div>
+        </form>
+    <% } else { %>
+        <h2>There are no items or customers, to create an invoice!</h2>
+    <% } %>
+    <br>
+</div>
+</body>
+</html>

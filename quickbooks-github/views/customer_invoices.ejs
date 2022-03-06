@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partials/head') %>
+
+<body>
+<%- include('./partials/nav') %>
+<div class="jumbotron">
+    <div class="container">
+        <h1>QuickBooks Demo APP</h1>
+    </div>
+</div>
+<div class="container">
+    <a class="btn btn-success" href="/create_invoice/<%= customer_id %>" style="float: right;">Create Invoice</a>
+    <a class="btn btn-primary" href="/" style="float: right; margin-right: 10px;">Go to Home</a>
+    <table class="table table-striped">
+        <thead>
+            <th>ID</th>
+            <th>DocNumber</th>
+            <th>TxnDate</th>
+            <th>CustomerRef</th>
+            <th>TotalAmt</th>
+        </thead>
+        <tbody>
+        <% for(var i=0; i<invoices.length; i++) { %>
+            <tr>
+                <td><%= invoices[i].Id %></td>
+                <td><%= invoices[i].DocNumber %></td>
+                <td><%= invoices[i].TxnDate %></td>
+                <td><%= invoices[i].CurrencyRef.value %></td>
+                <td><%= invoices[i].TotalAmt %></td>
+            </tr>
+        <% } %>
+        </tbody>
+    </table>
+</div>
