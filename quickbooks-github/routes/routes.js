@@ -66,9 +66,11 @@ router.post('/create_invoice', function (req, res) {
                 Line.forEach((line, index) => {
                     console.log(line)
                     if (line["SalesItemLineDetail"] !== null) {
+                        console.log(line["SalesItemLineDetail"])
                         if (line["SalesItemLineDetail"]["ItemRef"] !== null){
+                            console.log(line["SalesItemLineDetail"]["ItemRef"])
                             if (line["SalesItemLineDetail"]["ItemRef"]["name"] === ItemRef[0]) {
-                                console.log(line["SalesItemLineDetail"]["ItemRef"]["name"])                        
+                                console.log(line["SalesItemLineDetail"]["ItemRef"]["name"])
                             }
                         }
                     }            
