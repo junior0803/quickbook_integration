@@ -65,12 +65,12 @@ router.post('/create_invoice', function (req, res) {
                 var Line = respJson['QueryResponse']['Invoice'][0]['Line']
                 Line.forEach((line, index) => {
                     console.log(line)
-                    if (line["SalesItemLineDetail"] !== undefined) {
-                        console.log(line["SalesItemLineDetail"]["ItemRef"])
+                    if (line["SalesItemLineDetail"] !== undefined) {                        
                         if (line["SalesItemLineDetail"]["ItemRef"]["name"] === ItemRef[0]) {
-                            console.log(line["SalesItemLineDetail"]["ItemRef"]["name"])
-                        }                        
-                    }            
+                            Line[index]["Amount"] = invoice_amt
+                            Line[index]["SalesItemLineDetail"] = {"ItemRef": {"value": ItemRef[1],"name": ItemRef[0]},"Qty": invoice_qty}
+                        }
+                    }
                 })
                 respJson['QueryResponse']['Invoice'][0]['Line'] = Line
                 qbo.updateInvoice(
