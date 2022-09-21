@@ -19,16 +19,38 @@
             <th>CustomerRef</th>
             <th>TotalAmt</th>
         </thead>
-        <tbody>
-        <% for(var i=0; i<invoices.length; i++) { %>
-            <tr>
-                <td><%= invoices[i].Id %></td>
-                <td><%= invoices[i].DocNumber %></td>
-                <td><%= invoices[i].TxnDate %></td>
-                <td><%= invoices[i].CurrencyRef.value %></td>
-                <td><%= invoices[i].TotalAmt %></td>
-            </tr>
-        <% } %>
+        <tbody id="invoices">
         </tbody>
     </table>
 </div>
+<script>
+    async function getInvoices(){
+        try {
+            let response = await fetch('/get_invoices');
+            console.log(response.status);
+            console.log(response.statusText);
+            return data = await response.json();
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    async function updateInvoices() {
+        let invoices = await getInvoices();
+        console.log(invoices.length);
+        let html = '';
+        invoices.forEach(invoice => {
+            let htmlSeg = "<tr>"
+                    + "<td>" + invoice.Id + "</td>"
+                    + "<td>" + invoice.DocNumber + "</td>"
+                    + "<td>" + invoice.TxnDate + "</td>"
+                    + "<td>" + invoice.CurrencyRef.value + "</td>"
+                    + "<td>" + invoice.TotalAmt + "</td>"
+                + "</tr>";
+            html += htmlSeg;
+        });
+        document.getElementById("invoices").innerHTML = html;        
+    } 
+    updateInvoices();
+    setInterval(updateInvoices, 60000);
+</script>

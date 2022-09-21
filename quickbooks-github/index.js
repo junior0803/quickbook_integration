@@ -1,7 +1,8 @@
-require('dotenv').config()
+const QuickBooks = require('node-quickbooks')
+const OAuthClient = require('intuit-oauth')
 
 const express = require('express')
-const cors = require('cors');
+const cors = require('cors')
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const router = require('./routes/routes')
@@ -15,7 +16,9 @@ app.set('views', './views')
 app.set('routes', './routes')
 app.set('Access-Control-Allow-Origin', '*')
 app.use(bodyParser.urlencoded({extended: false}))
-app.use(cors())
+app.use(cors({
+    origin: '*'
+}))
 app.use(cookieParser())
 app.use(express.static(__dirname + '/public'))
 app.use(authMiddleware)

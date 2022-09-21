@@ -17,17 +17,34 @@
             <th>NAME</th>
             <th>Action</th>
         </thead>
-        <tbody>
-        <% for(var i=0; i<customers.length; i++) { %>
-            <tr>
-                <td><%= customers[i].Id%></td>
-                <td><%= `${customers[i].GivenName} ${customers[i].FamilyName}` %></td>
-                <td>
-                    <a class="btn btn-primary" href="/show_invoices/<%= customers[i].Id%>">See Invoice</a>
-                    <a class="btn btn-success" href="/create_invoice/<%= customers[i].Id%>">Create Invoice</a>
-                </td>
-            </tr>
-        <% } %>
+        <tbody id="custom">
         </tbody>
     </table>
 </div>
+
+<script>
+    async function getCustomers(){
+        try {
+            let response = await fetch('/get_customers');
+            return data = await response.json();
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    async function updateCustomers() {
+        let customers = await getCustomers();
+        let html = '';
+        customers.forEach(customer => {
+            let htmlSeg = "";
+            htmlSeg = `<tr><td>${customer.Id}</td><td>${customer.GivenName} ${customer.FamilyName}</td>
+            <td><a class="btn btn-primary" href="/show_invoices/${customer.Id}">See Invoice</a>
+            <a class="btn btn-success" href="/create_invoice/${customer.Id}">Create Invoice</a></td></tr>`;
+            html += htmlSeg;
+            console.log(customer.Id);
+        });
+        document.getElementById("custom").innerHTML = html;        
+    }
+    updateCustomers();
+    setInterval(updateCustomers, 60000);
+</script>

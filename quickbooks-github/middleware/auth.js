@@ -12,6 +12,8 @@ const auth = (req, res, next) => {
             next()
         } else {
             console.log("auth accessToken")
+            console.log('refreshToken' + refreshToken)
+            console.log('accessToken' + accessToken)
             oauthClient
                 .refreshUsingToken(refreshToken)
                 .then(function (authResponse) {
