@@ -66,12 +66,12 @@ router.post('/create_invoice', function (req, res) {
                 Line.forEach((line, index) => {
                     console.log(line)
                     if (line["SalesItemLineDetail"] !== null) {
-                        if (line["SalesItemLineDetail"]["ItemRef"] !== null)()
+                        if (line["SalesItemLineDetail"]["ItemRef"] !== null){
                             if (line["SalesItemLineDetail"]["ItemRef"]["name"] === ItemRef[0]) {
                                 console.log(line["SalesItemLineDetail"]["ItemRef"]["name"])                        
                             }
-                        }  
-                    }                    
+                        }
+                    }            
                 })
                 respJson['QueryResponse']['Invoice'][0]['Line'] = Line
                 qbo.updateInvoice(
