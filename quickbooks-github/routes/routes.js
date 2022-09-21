@@ -62,8 +62,9 @@ router.post('/create_invoice', function (req, res) {
                 respJson['QueryResponse']['Invoice'][0]['TxnDate'] = today
                 console.log("Line : ")
                 console.log(respJson['QueryResponse']['Invoice'][0]['Line'])
-                const newLine = respJson['QueryResponse']['Invoice'][0]['Line']
-                respJson['QueryResponse']['Invoice'][0]['Line'] = newLine
+                var Line = respJson['QueryResponse']['Invoice'][0]['Line']
+                console.log(Line)
+                respJson['QueryResponse']['Invoice'][0]['Line'] = Line
                 qbo.updateInvoice(
                     respJson['QueryResponse']['Invoice'][0], function (error, invoice) 
                 {
