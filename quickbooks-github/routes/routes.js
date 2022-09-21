@@ -56,22 +56,14 @@ router.post('/create_invoice', function (req, res) {
         qbo.findInvoices(`where DocNumber='${invoice_docnum}'`, function(err, resp) {
             const respJson = JSON.parse(JSON.stringify(resp))
             if (respJson['QueryResponse']['Invoice']) {
+                
                 const newDate = new Date()
                 const today = `${newDate.getFullYear()}-${(newDate.getMonth() + 1).toString().padStart(2, '0')}-${newDate.getDate().toString().padStart(2, '0')}`
                 respJson['QueryResponse']['Invoice'][0]['TxnDate'] = today
                 console.log("Line : ")
-                var Line = respJson['QueryResponse']['Invoice'][0]['Line']
-                console.log(Line)
-                Line.forEach((line, index) => {
-                    if (line["SalesItemLineDetail"]["ItemRef"]["name"] === ItemRef[0]) {
-                        console.log(line["SalesItemLineDetail"]["ItemRef"]["name"])
-                        // Line[index]["Amount"] = invoice_amt
-                        // Line[index]["SalesItemLineDetail"] = {"ItemRef": {"value": ItemRef[1],"name": ItemRef[0]},"Qty": invoice_qty}
-                    }
-                })
-                console.log(Line)
-                
-                respJson['QueryResponse']['Invoice'][0]['Line'] = Line
+                console.log(respJson['QueryResponse']['Invoice'][0]['Line'])
+                const newLine = {"Amount": invoice_amt, "DetailType": "SalesItemLineDetail","SalesItemLineDetail": {"ItemRef": {"value": ItemRef[1],"name": ItemRef[0]},"Qty": invoice_qty}}
+                respJson['QueryResponse']['Invoice'][0]['Line'] = newLine
                 qbo.updateInvoice(
                     respJson['QueryResponse']['Invoice'][0], function (error, invoice) 
                 {
